@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Paper, Box } from '@mui/material';
+import { Container, Typography, Paper, Box, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,6 +7,13 @@ const MotionPaper = motion(Paper);
 
 export const SubscriptionPlan: React.FC = () => {
   const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Redirect to PayPal with the form data
+    const form = e.currentTarget;
+    form.submit();
+  };
 
   return (
     <Container maxWidth="sm" sx={{ py: 8 }}>
@@ -73,18 +80,31 @@ export const SubscriptionPlan: React.FC = () => {
         </Box>
 
         <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <form 
+            action="https://www.paypal.com/cgi-bin/webscr" 
+            method="post" 
+            target="_top"
+            onSubmit={handleSubmit}
+          >
             <input type="hidden" name="cmd" value="_s-xclick" />
             <input type="hidden" name="hosted_button_id" value="4589P8SKF2VVN" />
             <input type="hidden" name="currency_code" value="USD" />
-            <input 
-              type="image" 
-              src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" 
-              border="0" 
-              name="submit" 
-              title="PayPal - The safer, easier way to pay online!" 
-              alt="Buy Now" 
-            />
+            <Button 
+              type="submit" 
+              sx={{ 
+                p: 0, 
+                minWidth: 'auto', 
+                '&:hover': { 
+                  backgroundColor: 'transparent' 
+                } 
+              }}
+            >
+              <img
+                src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"
+                alt="Buy Now with PayPal"
+                style={{ display: 'block' }}
+              />
+            </Button>
           </form>
         </Box>
       </MotionPaper>
