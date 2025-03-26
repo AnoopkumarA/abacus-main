@@ -1,55 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container, Typography, Paper, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-
-declare global {
-  interface Window {
-    paypal: any;
-  }
-}
 
 const MotionPaper = motion(Paper);
 
 export const SubscriptionPlan: React.FC = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Load PayPal Script
-    const script = document.createElement('script');
-    script.src = "https://www.paypal.com/sdk/js?client-id=AcKmwR8Zg6skkNoNmGH0yPuDaSLBzFceqUbAPtvd7Lj2LImcevF-wC1fvJzTzbgwlYg3yM4ms3-1gYr7&vault=true&intent=subscription";
-    script.setAttribute('data-sdk-integration-source', 'button-factory');
-    script.async = true;
-
-    script.onload = () => {
-      if (window.paypal) {
-        window.paypal.Buttons({
-          style: {
-            shape: 'pill',
-            color: 'gold',
-            layout: 'vertical',
-            label: 'subscribe'
-          },
-          createSubscription: function(data: any, actions: any) {
-            return actions.subscription.create({
-              plan_id: 'P-16X68761CC063753YM7SEXMY'
-            });
-          },
-          onApprove: function(data: any, actions: any) {
-            alert(`Subscription successful! Welcome to premium access!`);
-            // Navigate to practice after successful subscription
-            navigate('/practice');
-          }
-        }).render('#paypal-button-container');
-      }
-    };
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, [navigate]);
 
   return (
     <Container maxWidth="sm" sx={{ py: 8 }}>
@@ -115,7 +72,21 @@ export const SubscriptionPlan: React.FC = () => {
           </Typography>
         </Box>
 
-        <Box id="paypal-button-container" sx={{ mt: 4 }} />
+        <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="4589P8SKF2VVN" />
+            <input type="hidden" name="currency_code" value="USD" />
+            <input 
+              type="image" 
+              src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" 
+              border="0" 
+              name="submit" 
+              title="PayPal - The safer, easier way to pay online!" 
+              alt="Buy Now" 
+            />
+          </form>
+        </Box>
       </MotionPaper>
     </Container>
   );
