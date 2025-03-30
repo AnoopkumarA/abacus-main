@@ -132,23 +132,23 @@ export const KindergartenCalculation: React.FC = () => {
               display: 'flex', 
               justifyContent: 'center', 
               alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: { xs: 1, sm: 2 },
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              flexDirection: 'column',
+              gap: 2,
+              fontSize: '2rem',
               maxWidth: '100%',
               '& > span': {
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                minWidth: { xs: '40px', sm: '50px', md: '60px' },
-                minHeight: { xs: '40px', sm: '50px', md: '60px' },
+                width: '40px',
+                height: '40px',
               }
             }}>
               <Box sx={{ 
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                gap: { xs: 1, sm: 2 },
+                gap: 1,
                 maxWidth: '100%'
               }}>
                 {Array(currentQuestion.firstNumber).fill(currentQuestion.image).map((emoji, i) => (
@@ -165,7 +165,7 @@ export const KindergartenCalculation: React.FC = () => {
               <span style={{ 
                 color: currentQuestion.color, 
                 fontWeight: 'bold',
-                padding: { xs: '0 8px', sm: '0 16px' }
+                padding: '0 8px'
               }}>
                 {currentQuestion.operation}
               </span>
@@ -173,7 +173,7 @@ export const KindergartenCalculation: React.FC = () => {
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'center',
-                gap: { xs: 1, sm: 2 },
+                gap: 1,
                 maxWidth: '100%'
               }}>
                 {Array(currentQuestion.secondNumber).fill(currentQuestion.image).map((emoji, i) => (
@@ -193,7 +193,7 @@ export const KindergartenCalculation: React.FC = () => {
           <Grid item xs={12} md={6}>
             <Box sx={{ 
               textAlign: 'center',
-              mt: { xs: 2, sm: 3 }
+              mt: 2
             }}>
               <input
                 type="number"
@@ -201,10 +201,10 @@ export const KindergartenCalculation: React.FC = () => {
                 onChange={(e) => setUserAnswer(e.target.value)}
                 onKeyPress={handleKeyPress}
                 style={{
-                  fontSize: { xs: '1.5rem', sm: '2rem' },
-                  width: { xs: '120px', sm: '150px' },
+                  fontSize: '1.5rem',
+                  width: '120px',
                   textAlign: 'center',
-                  padding: { xs: '0.75rem', sm: '1rem' },
+                  padding: '0.75rem',
                   borderRadius: '1rem',
                   border: `2px solid ${currentQuestion.color}`,
                   outline: 'none',
