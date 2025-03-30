@@ -29,50 +29,50 @@ export const Problem: React.FC<ProblemProps> = ({
     <Paper
       elevation={0}
       sx={{
-        p: { xs: 1.5, sm: 2 },
-        border: '3px solid',
+        p: { xs: 1, sm: 1.5 },
+        border: '2px solid',
         borderColor: 'divider',
         borderRadius: 2,
         height: '100%',
         transition: 'all 0.3s ease',
         position: 'relative',
-        pt: { xs: 4, sm: 5 },
+        pt: { xs: 3, sm: 4 },
         '&:hover': {
-          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-          transform: 'translateY(-2px)',
+          boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+          transform: 'translateY(-1px)',
         },
       }}
     >
       <Avatar
         sx={{
           position: 'absolute',
-          top: -15,
+          top: -12,
           left: '50%',
           transform: 'translateX(-50%)',
-          width: { xs: 30, sm: 40 },
-          height: { xs: 30, sm: 40 },
-          fontSize: { xs: '0.9rem', sm: '1.1rem' },
+          width: 24,
+          height: 24,
+          fontSize: '0.8rem',
           bgcolor: 'primary.main',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-          border: '2px solid white',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          border: '1px solid white',
         }}
       >
         {id}
       </Avatar>
       
       <Box sx={{ 
-        mb: { xs: 1, sm: 2 }, 
+        mb: 1, 
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center', 
-        gap: { xs: 0.5, sm: 1 } 
+        gap: 0.5
       }}>
         <Typography 
           variant="body1" 
           component="div"
           sx={{ 
             fontFamily: 'monospace',
-            fontSize: { xs: '1rem', sm: '1.2rem' },
+            fontSize: '0.9rem',
             color: 'text.primary',
             fontWeight: 'bold',
           }}
@@ -81,13 +81,13 @@ export const Problem: React.FC<ProblemProps> = ({
         </Typography>
         {rows.map((num, index) => (
           <React.Fragment key={index}>
-            <Box sx={{ width: '100%', height: '1px', bgcolor: 'divider', my: 0.5 }} />
+            <Box sx={{ width: '100%', height: '1px', bgcolor: 'divider', my: 0.25 }} />
             <Typography 
               variant="body1" 
               component="div"
               sx={{ 
                 fontFamily: 'monospace',
-                fontSize: { xs: '1rem', sm: '1.2rem' },
+                fontSize: '0.9rem',
                 color: num >= 0 ? 'text.primary' : 'error.main',
                 fontWeight: 'bold',
               }}
@@ -96,14 +96,14 @@ export const Problem: React.FC<ProblemProps> = ({
             </Typography>
           </React.Fragment>
         ))}
-        <Box sx={{ width: '100%', height: '2px', bgcolor: 'primary.main', mt: 1, mb: 2 }} />
+        <Box sx={{ width: '100%', height: '1px', bgcolor: 'primary.main', mt: 0.5, mb: 1 }} />
       </Box>
 
       <TextField
         fullWidth
         variant="outlined"
         size="small"
-        placeholder="Your answer"
+        placeholder="Answer"
         value={answer}
         onChange={(e) => onAnswerChange(id, e.target.value)}
         onKeyPress={handleKeyPress}
@@ -111,14 +111,17 @@ export const Problem: React.FC<ProblemProps> = ({
           'data-problem-id': id,
           style: { 
             textAlign: 'center',
-            fontSize: { xs: '0.9rem', sm: '1rem' },
-            padding: { xs: '8px', sm: '12px' }
+            fontSize: '0.9rem',
+            padding: '4px 8px',
           }
         }}
         sx={{
           '& .MuiOutlinedInput-root': {
-            borderRadius: 1.5,
+            borderRadius: 1,
             backgroundColor: 'background.paper',
+            '& fieldset': {
+              borderWidth: 1,
+            },
           },
         }}
       />

@@ -296,12 +296,12 @@ export const AbacusPractice: React.FC = () => {
             </Box>
           </Box>
 
-          <Box sx={{ p: 4 }}>
+          <Box sx={{ p: { xs: 2, sm: 4 } }}>
             {isActive && (
               <Fade in={isActive}>
-                <Grid container spacing={{ xs: 2, md: 3 }}>
+                <Grid container spacing={{ xs: 1, sm: 2 }}>
                   {problems.map((problem) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={problem.id}>
+                    <Grid item xs={6} sm={4} md={3} lg={2} key={problem.id}>
                       <Problem
                         id={problem.id}
                         baseNumber={problem.baseNumber}
