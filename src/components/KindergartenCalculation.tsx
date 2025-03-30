@@ -119,7 +119,10 @@ export const KindergartenCalculation: React.FC = () => {
         elevation={3}
         sx={{ p: 4, borderRadius: 4 }}
       >
-        <Typography variant="h3" align="center" sx={{ mb: 4 }}>
+        <Typography variant="h3" align="center" sx={{ 
+          mb: 4,
+          fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }
+        }}>
           Picture Math
         </Typography>
 
@@ -129,47 +132,79 @@ export const KindergartenCalculation: React.FC = () => {
               display: 'flex', 
               justifyContent: 'center', 
               alignItems: 'center',
-              gap: 2,
-              fontSize: '3rem'
+              flexWrap: 'wrap',
+              gap: { xs: 1, sm: 2 },
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              maxWidth: '100%',
+              '& > span': {
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minWidth: { xs: '40px', sm: '50px', md: '60px' },
+                minHeight: { xs: '40px', sm: '50px', md: '60px' },
+              }
             }}>
-              {Array(currentQuestion.firstNumber).fill(currentQuestion.image).map((emoji, i) => (
-                <motion.span
-                  key={`first-${i}`}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  {emoji}
-                </motion.span>
-              ))}
-              <span style={{ color: currentQuestion.color, fontWeight: 'bold' }}>
+              <Box sx={{ 
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                gap: { xs: 1, sm: 2 },
+                maxWidth: '100%'
+              }}>
+                {Array(currentQuestion.firstNumber).fill(currentQuestion.image).map((emoji, i) => (
+                  <motion.span
+                    key={`first-${i}`}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    {emoji}
+                  </motion.span>
+                ))}
+              </Box>
+              <span style={{ 
+                color: currentQuestion.color, 
+                fontWeight: 'bold',
+                padding: { xs: '0 8px', sm: '0 16px' }
+              }}>
                 {currentQuestion.operation}
               </span>
-              {Array(currentQuestion.secondNumber).fill(currentQuestion.image).map((emoji, i) => (
-                <motion.span
-                  key={`second-${i}`}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: (currentQuestion.firstNumber + i) * 0.1 }}
-                >
-                  {emoji}
-                </motion.span>
-              ))}
+              <Box sx={{ 
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                gap: { xs: 1, sm: 2 },
+                maxWidth: '100%'
+              }}>
+                {Array(currentQuestion.secondNumber).fill(currentQuestion.image).map((emoji, i) => (
+                  <motion.span
+                    key={`second-${i}`}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: (currentQuestion.firstNumber + i) * 0.1 }}
+                  >
+                    {emoji}
+                  </motion.span>
+                ))}
+              </Box>
             </Box>
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Box sx={{ textAlign: 'center' }}>
+            <Box sx={{ 
+              textAlign: 'center',
+              mt: { xs: 2, sm: 3 }
+            }}>
               <input
                 type="number"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
                 onKeyPress={handleKeyPress}
                 style={{
-                  fontSize: '2rem',
-                  width: '150px',
+                  fontSize: { xs: '1.5rem', sm: '2rem' },
+                  width: { xs: '120px', sm: '150px' },
                   textAlign: 'center',
-                  padding: '1rem',
+                  padding: { xs: '0.75rem', sm: '1rem' },
                   borderRadius: '1rem',
                   border: `2px solid ${currentQuestion.color}`,
                   outline: 'none',
@@ -182,9 +217,9 @@ export const KindergartenCalculation: React.FC = () => {
                 variant="contained"
                 onClick={checkAnswer}
                 sx={{
-                  mt: 3,
-                  ml: 2,
-                  fontSize: '1.2rem',
+                  mt: { xs: 2, sm: 3 },
+                  ml: { xs: 1, sm: 2 },
+                  fontSize: { xs: '1rem', sm: '1.2rem' },
                   bgcolor: currentQuestion.color,
                   '&:hover': {
                     bgcolor: currentQuestion.color + 'dd'
