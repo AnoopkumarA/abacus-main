@@ -175,7 +175,8 @@ export const AbacusPractice: React.FC = () => {
           border: '1px solid',
           borderColor: 'divider',
           background: 'rgba(255, 255, 255, 0.9)',
-          backdropFilter: 'blur(10px)'
+          backdropFilter: 'blur(10px)',
+          
         }}>
           <Box sx={{ 
             p: 3, 
@@ -263,23 +264,10 @@ export const AbacusPractice: React.FC = () => {
                       </Box>
                     </CardContent>
                   </Card>
-                  <Button
-                    fullWidth={false}
-                    variant="contained"
-                    color="success"
-                    startIcon={<CheckCircle2 />}
-                    onClick={handleFinish}
-                    sx={{ 
-                      borderRadius: 2,
-                      minWidth: { xs: '100%', sm: 'auto' }
-                    }}
-                  >
-                    Finish Test
-                  </Button>
                 </Box>
               </Grid>
             </Grid>
-            <Box sx={{ mt: 3 }}>
+            <Box sx={{ mt: 7 }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" color="text.secondary">
                   Progress
@@ -296,23 +284,66 @@ export const AbacusPractice: React.FC = () => {
             </Box>
           </Box>
 
-          <Box sx={{ p: { xs: 2, sm: 4 } }}>
+          <Box sx={{ p: 4 }}>
             {isActive && (
               <Fade in={isActive}>
-                <Grid container spacing={{ xs: 1, sm: 2 }}>
-                  {problems.map((problem) => (
-                    <Grid item xs={6} sm={4} md={3} lg={2} key={problem.id}>
-                      <Problem
-                        id={problem.id}
-                        baseNumber={problem.baseNumber}
-                        rows={problem.rows}
-                        answer={answers[problem.id] || ''}
-                        onAnswerChange={handleAnswerChange}
-                        onEnterPress={handleEnterPress}
-                      />
-                    </Grid>
-                  ))}
-                </Grid>
+                <>
+                  <Grid 
+                    container 
+                    spacing={{ xs: 1, md: 3 }}
+                    sx={{
+                      rowGap: { xs: 2, md: 'inherit' }
+                    }}
+                  >
+                    {problems.map((problem) => (
+                      <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={problem.id} sx={{
+                        '& .MuiPaper-root': {
+                          p: { xs: 1, md: 3 },
+                          '& .MuiTypography-root': {
+                            fontSize: { xs: '0.875rem', md: '1rem' }
+                          },
+                          '& input': {
+                            width: { xs: '60px', md: '100px' },
+                            height: { xs: '30px', md: '40px' },
+                            fontSize: { xs: '0.875rem', md: '1rem' }
+                          }
+                        }
+                      }}>
+                        <Problem
+                          id={problem.id}
+                          baseNumber={problem.baseNumber}
+                          rows={problem.rows}
+                          answer={answers[problem.id] || ''}
+                          onAnswerChange={handleAnswerChange}
+                          onEnterPress={handleEnterPress}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                  <Box sx={{ 
+                    display: 'flex', 
+                    justifyContent: 'center',
+                    mt: { xs: 4, md: 6 },
+                    mb: { xs: 2, md: 3 }
+                  }}>
+                    <Button
+                      fullWidth={false}
+                      variant="contained"
+                      color="success"
+                      size="large"
+                      startIcon={<CheckCircle2 />}
+                      onClick={handleFinish}
+                      sx={{ 
+                        borderRadius: 2,
+                        minWidth: { xs: '80%', sm: '300px' },
+                        py: { xs: 1.5, md: 2 },
+                        fontSize: { xs: '1rem', md: '1.2rem' }
+                      }}
+                    >
+                      Finish Test
+                    </Button>
+                  </Box>
+                </>
               </Fade>
             )}
 
