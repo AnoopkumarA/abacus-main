@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { AbacusPractice } from './components/AbacusPractice';
@@ -23,6 +23,36 @@ import { MemoryGame } from './components/MemoryGame';
 import { TestPractice } from './components/TestPractice';
 import { MagicalShapes } from './components/MagicalShapes';
 import { SubscriptionPlan } from './components/auth/SubscriptionPlan';
+import { PWAInstallPrompt } from './components/PWAInstallPrompt';
+
+// Register service worker
+const registerServiceWorker = async () => {
+  if ('serviceWorker' in navigator) {
+    try {
+      const registration = await navigator.serviceWorker.register('/service-worker.js', {
+        scope: '/'
+      });
+      
+      if (registration.installing) {
+        console.log('Service worker installing');
+      } else if (registration.waiting) {
+        console.log('Service worker installed');
+      } else if (registration.active) {
+        console.log('Service worker active');
+      }
+      
+      // Check if PWA is installable
+      window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('PWA install prompt is ready to be shown');
+      });
+
+    } catch (error) {
+      console.error('Service worker registration failed:', error);
+    }
+  } else {
+    console.log('Service workers are not supported');
+  }
+};
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth();
@@ -41,12 +71,17 @@ const SignUpRedirect: React.FC = () => {
 function App() {
   const { user } = useAuth();
 
+  useEffect(() => {
+    registerServiceWorker();
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AuthProvider>
         <Router>
           <div className="app-container">
+            <PWAInstallPrompt />
             <Navbar />
             <main className="main-content">
               <Routes>

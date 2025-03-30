@@ -80,32 +80,12 @@ export const SubscriptionPlan: React.FC = () => {
         </Box>
 
         <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
-          <form 
-            action="https://www.paypal.com/cgi-bin/webscr" 
-            method="post" 
-            target="_top"
-            onSubmit={handleSubmit}
-          >
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="4589P8SKF2VVN" />
-            <input type="hidden" name="currency_code" value="USD" />
-            <Button 
-              type="submit" 
-              sx={{ 
-                p: 0, 
-                minWidth: 'auto', 
-                '&:hover': { 
-                  backgroundColor: 'transparent' 
-                } 
-              }}
-            >
-              <img
-                src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif"
-                alt="Buy Now with PayPal"
-                style={{ display: 'block' }}
-              />
-            </Button>
-          </form>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_s-xclick" />
+  <input type="hidden" name="hosted_button_id" value="ANWS8E9G55J3S" />
+  <input type="hidden" name="currency_code" value="USD" />
+  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Buy Now" />
+</form>
         </Box>
       </MotionPaper>
     </Container>
