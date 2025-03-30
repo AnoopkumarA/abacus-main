@@ -18,12 +18,12 @@ export const Home = () => {
 
   const handleDownload = () => {
     // Replace this URL with your actual APK file URL
-    const apkUrl = '/downloads/abacus-app.apk';
+    const apkUrl = '/downloads/abacus.apk';
     
     // Create a link element and trigger the download
     const link = document.createElement('a');
     link.href = apkUrl;
-    link.download = 'abacus-app.apk';
+    link.download = 'abacus.apk';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
