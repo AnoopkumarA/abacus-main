@@ -298,7 +298,8 @@ export const AbacusPractice: React.FC = () => {
                     {problems.map((problem) => (
                       <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={problem.id} sx={{
                         '& .MuiPaper-root': {
-                          p: { xs: 1, md: 3 },
+                          p: { xs: 1.5, md: 3 },
+                          pt: { xs: 2.5, md: 3.5 },
                           '& .MuiTypography-root': {
                             fontSize: { xs: '0.875rem', md: '1rem' }
                           },

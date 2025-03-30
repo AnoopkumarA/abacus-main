@@ -103,7 +103,7 @@ export const Problem: React.FC<ProblemProps> = ({
         fullWidth
         variant="outlined"
         size="small"
-        placeholder="Your answer"
+        placeholder="Answer"
         value={answer}
         onChange={(e) => onAnswerChange(id, e.target.value)}
         onKeyPress={handleKeyPress}
