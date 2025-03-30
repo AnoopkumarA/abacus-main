@@ -85,7 +85,7 @@ function App() {
                   </ProtectedRoute>
                 } />
                 <Route path="/kindergarten" element={<KindergartenHub />} />
-                <Route path="/kindergarten/counting" element={<KindergartenAbacus />} />
+                <Route path="/kindergarten/abacus" element={<KindergartenAbacus />} />
                 <Route path="/kindergarten/calculation" element={<KindergartenCalculation />} />
                 <Route path="/practice/test" element={
                   <ProtectedRoute>
