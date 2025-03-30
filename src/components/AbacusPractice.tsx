@@ -287,7 +287,7 @@ export const AbacusPractice: React.FC = () => {
           <Box sx={{ p: 4 }}>
             {isActive && (
               <Fade in={isActive}>
-                <>
+                <Box>
                   <Grid 
                     container 
                     spacing={{ xs: 1, md: 3 }}
@@ -321,29 +321,27 @@ export const AbacusPractice: React.FC = () => {
                     ))}
                   </Grid>
                   <Box sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'center',
-                    mt: { xs: 4, md: 6 },
-                    mb: { xs: 2, md: 3 }
+                    mt: 4,
+                    display: 'flex',
+                    justifyContent: 'center'
                   }}>
                     <Button
-                      fullWidth={false}
                       variant="contained"
                       color="success"
-                      size="large"
                       startIcon={<CheckCircle2 />}
                       onClick={handleFinish}
                       sx={{ 
                         borderRadius: 2,
-                        minWidth: { xs: '80%', sm: '300px' },
-                        py: { xs: 1.5, md: 2 },
-                        fontSize: { xs: '1rem', md: '1.2rem' }
+                        py: 1.5,
+                        px: 4,
+                        fontSize: '1rem',
+                        minWidth: { xs: '100%', sm: '200px' }
                       }}
                     >
                       Finish Test
                     </Button>
                   </Box>
-                </>
+                </Box>
               </Fade>
             )}
 
