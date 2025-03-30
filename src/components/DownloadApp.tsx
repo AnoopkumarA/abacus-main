@@ -7,37 +7,16 @@ const MotionPaper = motion(Paper);
 
 export const DownloadApp: React.FC = () => {
   const handleDownload = () => {
-    try {
-      // Use the correct path for Vercel deployment
-      const apkUrl = '/downloads/abacus-app.apk';
-      
-      // Fetch to check if file exists
-      fetch(apkUrl)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('APK file not found');
-          }
-          return response.blob();
-        })
-        .then(blob => {
-          // Create download link
-          const url = window.URL.createObjectURL(blob);
-          const link = document.createElement('a');
-          link.href = url;
-          link.download = 'abacus-app.apk';
-          document.body.appendChild(link);
-          link.click();
-          window.URL.revokeObjectURL(url);
-          document.body.removeChild(link);
-        })
-        .catch(error => {
-          console.error('Download failed:', error);
-          alert('Sorry, the APK file is not available at the moment. Please try again later.');
-        });
-    } catch (error) {
-      console.error('Download error:', error);
-      alert('Sorry, something went wrong. Please try again later.');
-    }
+    // Replace this URL with your actual APK file URL
+    const apkUrl = '/downloads/abacus.apk';
+    
+    // Create a link element and trigger the download
+    const link = document.createElement('a');
+    link.href = apkUrl;
+    link.download = 'abacus.apk';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
